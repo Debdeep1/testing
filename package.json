@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@firebase/analytics": "^0.10.0",
+    "firebase": "^10.1.0"
+  }
+}

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import imageSource from './assets/peakpx.jpg'; // Replace this with your image file path
 
 const ImageContainer = styled.div`
   display: inline-block;
@@ -26,6 +25,11 @@ const FullScreenImage = styled.img`
 
 const ImageDisplay = () => {
   const [isFullScreen, setIsFullScreen] = useState(false);
+  const [imageUrl, setImageUrl] = useState('');
+
+  const handleImageUrlChange = (event) => {
+    setImageUrl(event.target.value);
+  };
 
   const toggleFullScreen = () => {
     setIsFullScreen(!isFullScreen);
@@ -33,12 +37,15 @@ const ImageDisplay = () => {
 
   return (
     <>
-      <ImageContainer onClick={toggleFullScreen}>
-        <img src={imageSource} alt="Image" />
-      </ImageContainer>
+      <div>
+        <input type="text" value={imageUrl} onChange={handleImageUrlChange} />
+        <ImageContainer onClick={toggleFullScreen}>
+          <img src={imageUrl} alt="Image" />
+        </ImageContainer>
+      </div>
       {isFullScreen && (
         <FullScreenOverlay onClick={toggleFullScreen}>
-          <FullScreenImage src={imageSource} alt="Full-Screen Image" />
+          <FullScreenImage src={imageUrl} alt="Full-Screen Image" />
         </FullScreenOverlay>
       )}
     </>
